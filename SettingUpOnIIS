@@ -1,0 +1,22 @@
+#######################
+Enable IIS on Machine
+#######################
+Open Control Panel
+From Programs, select "Turn Windows Features on or off"
+From the list open "Internet Information Services"
+From the open list open "Web Management Tools" and select "IIS Management Console"
+From the open list open "World Wide Web Services" and open "Application Development Features" and select "CGI".
+Select OK and reboot.
+
+#######################
+Creating an Application Pool
+#######################
+
+
+#######################
+Creating a fastcgi handler and wfastcgi file
+########################
+
+#######################
+Creating a new website and hosting the Application using https
+########################

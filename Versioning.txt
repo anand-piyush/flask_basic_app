@@ -1,0 +1,3 @@
+in the root __init__ file in py versioning of the api is done.
+The defined variable __version__ is being used everywhere within the app
+version can be also viewed via endpoint /api/version or /version or on swagger page

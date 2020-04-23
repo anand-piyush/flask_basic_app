@@ -1,11 +1,12 @@
 
 from flask import Flask
 from flasgger import Swagger
+from src import __version__
 from src.views.testpage import testpage
+
 
 app = Flask(__name__)
 app.register_blueprint(testpage)
-__version__ = '1.0.2'
 '''
 CSS MODIFICATIONS IS ALSO AN OPTION TO TRY (not tried these but the coded ones in the file)
 swagger_config = Swagger.DEFAULT_CONFIG

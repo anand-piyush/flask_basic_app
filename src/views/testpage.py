@@ -3,6 +3,7 @@ from flask import Blueprint
 from flask import jsonify
 from flask import request
 from flasgger.utils import swag_from 
+from src import __version__
 
 "REF : http://brunorocha.org/python/flask/flasgger-api-playground-with-flask-and-swagger-ui.html"
 
@@ -18,6 +19,11 @@ def homepage():
 @testpage.route('/termsofservice') 
 def termsofservice():
     return("there is no terms of service for this api for now")
+
+@testpage.route('/api/version')
+@testpage.route('/version')
+def get_api_version():
+  return __version__
 
 @testpage.route('/api/language/<string:language>/', methods=['GET'])
 def index(language):

@@ -1,0 +1,91 @@
+#######################
+Enable IIS on Machine
+#######################
+Open Control Panel
+From Programs, select "Turn Windows Features on or off"
+From the list open "Internet Information Services"
+From the open list open "Web Management Tools" and select "IIS Management Console"
+From the open list open "World Wide Web Services" and open "Application Development Features" and select "CGI".
+Select OK and reboot.
+
+#######################
+Creating an Application Pool
+#######################
+1. select win+R and run inetmgr
+2. create an Application Pool. In the Advanced Settings you may define queue length and other details like Identity with 
+    which it should run Eg. a particular user account who has specific permissions, generally known as service account.
+3. Add your current user and password in Identity else it may not be able to access site path and will give 500 error code
+
+
+#######################
+Creating a new website and hosting the Application
+########################
+1. Right click on Sites and click Add website
+2. Choose a site Name, select app pool created above, give the physical path and give binding as http
+3. If needed specifc physical path credentials maybe given here but should be autopicked via pool so recommended to skip.
+
+#################
+HTTPS and related bindings
+################
+1. bindings can be changed using option Bindings in website to change port, domain name, http/https ports add/remove etc.
+2. For https, create a self signed certificate first
+3. GOTO root iis and select certificates, from right hand side select create self signed certificate.
+4 SPecify a friendly name of certificate as BasicFLaskCertificate
+5 In certificate store select Personal and click OK. Your certificate is ready to be used.
+6. Open bindings and give necessary details like port etc. and give the self signed certificate created in (4) to enable https in the SSL certificate field
+7. Once binding is complete, your website is hosted successfully on https. Use link to open https://localhost/api/doc/
+
+#######################
+Creating a fastcgi handler and wfastcgi file
+########################
+
+1. pip install wfastcgi
+2. Open the Scripts folder in the activated env directory and find wfastcgi.exe. If there means your package is installed successfully
+2.a enable fastcgi using command wfastcgi-enable with ADMIN RIGHTS on CMD
+    MORE DETAILS HERE https://gist.github.com/bparaj/ac8dd5c35a15a7633a268e668f4d2c94
+2.b It should print something like the following
+    """
+    Applied configuration changes to section "system.webServer/fastCgi" for "MACHINE/WEBROOT/APPHOST" at configuration commit path "MACHINE/WEBROOT/APPHOST"
+    "D:\PythonApps\flask_app_iis\env\Scripts\python.exe|D:\PythonApps\flask_app_iis\env\Lib\site-packages\wfastcgi.py" can now be used as a FastCGI script processor
+    """
+3. paste the file in the project folder
+4. Open iis and select the website you created  above
+5. Open Handler Mappings in the website portion
+6. Select Add Module Mappings on doing a right click
+7. Fill the following
+     1. Req Path  ->  *
+    2.  Module     -> fastcgiModule
+    3.   Executable  ->  path with | separation for python exe as given in (2.b)
+    4.   Name of the handler
+    4a.  Click Request Restrictions. In the dialog box, the field should be unchecked where its written "Invoke Handler only if request is mapped to". This should be entirely unchecked.
+    5. Select Yes on the popup asking "Do you want to create a fastcgi Application for this Executable. Click Yes to add the entry in the fastcgi collection and to enable the exe to run as FastCGI app"
+8. (7.5) must have created a mapping in fastcgi Settings in the root
+9. Open the fastcgi Settings and double click the entry created at your path
+10. Under Environment Variables, click  the 3 dots and add the following 
+    1. KEY  : PYTHONPATH    ; VALUE : D:\PythonApps\flask_app_iis     [PATH TO GIT DIR]
+    2. KEY  : WSGI_HANDLER   ; VALUE src.run.app                      [PATH TO APP VARIABLE]
+
+##############################
+START
+#############################
+start the website using localhost:<port>/api/doc
+
+############################
+add name in hostfile of system for resolution
+###########################
+1. Open C:\Windows\System32\drivers\etc\hosts using notepad and modify after taking backup. You might have to copy in documents and change and then paste back in etc.
+2. ADD the following in the end of file
+192.168.0.113	piyushapi
+3. Open https://piyushapi/api/doc/
+4. Replace backup if needed.
+
+###########################
+DNS in router can also be modified using 192.168.1.1 or router url and going to network and adding configuration of the name and ip to be resolved
+###########################
+
+
+###########################
+#####################
+disable-wfastcgi can be done in the virtual env again (after shutting down things in iis) if need to shut down the website else not recommended.
+##########################
+

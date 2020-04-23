@@ -5,6 +5,7 @@ from src.views.testpage import testpage
 
 app = Flask(__name__)
 app.register_blueprint(testpage)
+__version__ = '1.0.2'
 '''
 CSS MODIFICATIONS IS ALSO AN OPTION TO TRY (not tried these but the coded ones in the file)
 swagger_config = Swagger.DEFAULT_CONFIG
@@ -16,7 +17,7 @@ D:\\PythonApps\\flask_app_iis\\env\\Lib\\site-packages\\flasgger\\ui3\\templates
 '''
 app.config['SWAGGER'] = {
     'title': 'Sample API',
-    'version': '2.0.1',
+    'version': __version__,
     'uiversion': 3, # for older versions set a lesser value as we have used 2 in my previous company
     "specs_route": "/api/doc/",
     'description' : 'Coded by Piyush Anand',
@@ -24,5 +25,5 @@ app.config['SWAGGER'] = {
 }
 swag = Swagger(app)
 
-if __name__ == "__main__":
-    app.run('0.0.0.0')
+# if __name__ == "__main__":
+#     app.run('0.0.0.0')

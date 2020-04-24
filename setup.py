@@ -1,6 +1,5 @@
 import setuptools
 import unittest
-from glob import glob
 from src.version import __version__
 
 # REF : https://ep2015.europython.eu/conference/talks/less-known-packaging-features-and-tricks

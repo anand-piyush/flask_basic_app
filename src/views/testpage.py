@@ -3,7 +3,7 @@ from flask import Blueprint
 from flask import jsonify
 from flask import request
 from flasgger.utils import swag_from 
-from src import __version__
+from src.version import __version__
 
 "REF : http://brunorocha.org/python/flask/flasgger-api-playground-with-flask-and-swagger-ui.html"
 

@@ -1,3 +1,10 @@
 in the root __init__ file in py versioning of the api is done.
 The defined variable __version__ is being used everywhere within the app
 version can be also viewed via endpoint /api/version or /version or on swagger page
+
+
+##### BETTER WAY OF DOING THIS IS VIA package setuptools-scm (as per https://ep2015.europython.eu/conference/talks/less-known-packaging-features-and-tricks, users will not be 
+able to use this package then 
+since you have an internal dependency which users are yet to import)
+Better ways of versioning listed https://packaging.python.org/guides/single-sourcing-package-version/
+NOTHING LIKE THIS SHOULD EVER BE imported in setup.py file

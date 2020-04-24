@@ -1,8 +1,9 @@
 
 from flask import Flask
 from flasgger import Swagger
-from src import __version__
+from src.version import __version__
 from src.views.testpage import testpage
+# from src import version
 
 
 app = Flask(__name__)

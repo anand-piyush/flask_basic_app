@@ -1,3 +1,16 @@
 # REF : https://packaging.python.org/tutorials/packaging-projects/
 
 Create setup.py
+use the command      python3 -m pip install --user --upgrade setuptools wheel   to install setuptools and wheel
+      generally pip freeze doesnt shows as req is generally self satisfied when virtual env is Created
+Build using python setup.py sdist bdist_wheel
+In dist/ you will get the whl file and tar files for distribution
+
+
+# for dev run test
+# python setup.py develop
+# to run test cases run
+# python setup.py test 
+# for building release distribution wheel run
+# python setup.py sdist bdist_wheel
+

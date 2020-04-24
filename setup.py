@@ -16,9 +16,6 @@ def my_test_suite():
     test_suite = test_loader.discover('tests', pattern='test_*.py')
     return test_suite
 
-# TODOS : 
-# change installation folder name through any var
-
 
 setuptools.setup(
     name="simple-flask-app", # Replace with your own username

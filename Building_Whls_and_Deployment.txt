@@ -1,6 +1,6 @@
 # REF : https://packaging.python.org/tutorials/packaging-projects/
 
-Create setup.py (generally Created at a step before the package in dir as it picks the name of directory under import)
+Create setup.py (generally Created at a step before the package in dir as it picks the name of directory under import, for better ref refer https://github.com/psf/requests/blob/master/setup.py and its dir structure)
 use the command      python3 -m pip install --user --upgrade setuptools wheel   to install setuptools and wheel
       generally pip freeze doesnt shows as req is generally self satisfied when virtual env is Created
 Build using python setup.py sdist bdist_wheel
@@ -14,9 +14,12 @@ In dist/ you will get the whl file and tar files for distribution
 # for building release distribution wheel run
 # python setup.py sdist bdist_wheel
 
->> IIS WEBSITE CAN BE CONFIGURED TO LOOK TO PROJECT FOLDER IN VENV now
+>> IIS WEBSITE CAN BE CONFIGURED TO LOOK TO PROJECT FOLDER IN VENV now, means
+1. create a new website with the physical path of venv directory
+2. follow the steps given in SettingUpOnIIS.txt, pkg directory (src in our case) in Lib\ folder should be the one containing your code now as usual
+3 do pip upgrade or remove/install and ur iis will be unaffected
 
->> for using waitress following commands can be triggered  https://docs.pylonsproject.org/projects/waitress/en/latest/usage.html
+>> for using WAITRESS following commands can be triggered  https://docs.pylonsproject.org/projects/waitress/en/latest/usage.html
 from src import run
 import waitress
 serve(app, host='0.0.0.0', port=8000)
@@ -26,3 +29,18 @@ or on terminal
 run following commands
 activate virtual env
 waitress-serve src:run.app
+
+>> OTHER OPTIONS AVAILABLE AT https://flask.palletsprojects.com/en/1.1.x/deploying/
+
+
+############################# APART FROM MANUAL DEPLOYMENT AND SETUP as SUGGESTED ABOVE, AUTOMATED ROUTES CAN ALSO BE FOLLOWED #######################################
+
+1. USE Fabric (works by automating ssh commands on linux). Many other similar tools can be also used if needed an alternative.
+
+2. On windows, we can also use
+>> CUSTOM APIs
+    A. Build an endpoint for deployment and update and only give rights to you. API should be hosted on your server.That api will contain 
+         A.1. Upgrade the api using pip  [the whl file to be placed in shared folders or cloud like internal s3]
+         A.2. Restart the server (website)
+
+>> USE RPA or tools like the ones listed on https://4sysops.com/archives/three-ways-to-run-remote-windows-commands/

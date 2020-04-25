@@ -3,8 +3,16 @@
 Create setup.py (generally Created at a step before the package in dir as it picks the name of directory under import, for better ref refer https://github.com/psf/requests/blob/master/setup.py and its dir structure)
 use the command      python3 -m pip install --user --upgrade setuptools wheel   to install setuptools and wheel
       generally pip freeze doesnt shows as req is generally self satisfied when virtual env is Created
-Build using python setup.py sdist bdist_wheel
+Build using    python setup.py sdist bdist_wheel
 In dist/ you will get the whl file and tar files for distribution
+
+>> now you can host this on pypi or testpypi https://packaging.python.org/tutorials/packaging-projects/#uploading-the-distribution-archives
+>> or can distribute the whl urself
+>> whls can be installed manually using the following command
+   |||||| if only the single whl dependency is in directory rest all from pypi to be downloaded (recommended to use uninstall before or upgrade commands in case of upgrades)
+   pip install simple_flask_app --find-links file:\\\D:\PythonApps\flask_app_iis\dist
+   |||||| if all dependencies in dir
+   pip install simple_flask_app --find-links file:\\\D:\PythonApps\flask_app_iis\dist --no-index
 
 
 # for dev run test

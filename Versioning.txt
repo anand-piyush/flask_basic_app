@@ -7,4 +7,8 @@ version can be also viewed via endpoint /api/version or /version or on swagger p
 able to use this package then 
 since you have an internal dependency which users are yet to import)
 Better ways of versioning listed https://packaging.python.org/guides/single-sourcing-package-version/
-NOTHING LIKE THIS SHOULD EVER BE imported in setup.py file
+NOTHING "" LIKE THIS "" SHOULD EVER BE imported in setup.py file
+
+
+# for now i have created a python file named version.py which is being imported everywhere to determine version for the app
+# better suggestion is to use setuptools-scm

@@ -17,7 +17,7 @@ def my_test_suite():
 
 
 setuptools.setup(
-    name="simple-flask-app", # Replace with your own username
+    name="simple_flask_app", 
     version=__version__,
     author="Piyush Anand",
     author_email="piyush.anand@rediffmail.com",

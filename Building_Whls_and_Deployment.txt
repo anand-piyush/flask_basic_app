@@ -1,6 +1,6 @@
 # REF : https://packaging.python.org/tutorials/packaging-projects/
 
-Create setup.py
+Create setup.py (generally Created at a step before the package in dir as it picks the name of directory under import)
 use the command      python3 -m pip install --user --upgrade setuptools wheel   to install setuptools and wheel
       generally pip freeze doesnt shows as req is generally self satisfied when virtual env is Created
 Build using python setup.py sdist bdist_wheel
@@ -14,3 +14,15 @@ In dist/ you will get the whl file and tar files for distribution
 # for building release distribution wheel run
 # python setup.py sdist bdist_wheel
 
+>> IIS WEBSITE CAN BE CONFIGURED TO LOOK TO PROJECT FOLDER IN VENV now
+
+>> for using waitress following commands can be triggered  https://docs.pylonsproject.org/projects/waitress/en/latest/usage.html
+from src import run
+import waitress
+serve(app, host='0.0.0.0', port=8000)
+
+or on terminal
+
+run following commands
+activate virtual env
+waitress-serve src:run.app

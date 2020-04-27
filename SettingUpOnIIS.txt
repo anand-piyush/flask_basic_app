@@ -35,9 +35,16 @@ HTTPS and related bindings
 6. Open bindings and give necessary details like port etc. and give the self signed certificate created in (4) to enable https in the SSL certificate field
 7. Once binding is complete, your website is hosted successfully on https. Use link to open https://localhost/api/doc/
 
+
 #######################
 Creating a fastcgi handler and wfastcgi file
 ########################
+wfastcgi.py provides a bridge between IIS and Python using WSGI and FastCGI, similar to what mod_python provides for Apache HTTP Server.
+
+It can be used with any Python web application or framework that supports WSGI, and provides an efficient way to handle requests and process pools through IIS.
+In general, FASTCGI being a socket wire protocol means that you always need some type of programmatic interface on top to use it. For 
+Python one such option is WSGI. As FASTCGI is just a means to an end, one can't really compare its performance to WSGI in that case 
+because WSGI isn't a comparable socket wire protocol, but a user of FASTCGI itself.
 
 1. pip install wfastcgi
 2. Open the Scripts folder in the activated env directory and find wfastcgi.exe. If there means your package is installed successfully

@@ -11,7 +11,7 @@ jsonschema==3.2.0
 lazy-object-proxy==1.4.3
 MarkupSafe==1.1.1
 mccabe==0.6.1
-mistune==0.8.4
+mistune==2.0.3
 pylint==2.4.4
 pyrsistent==0.16.0
 PyYAML==5.3.1
